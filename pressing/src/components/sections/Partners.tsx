@@ -12,7 +12,7 @@ function PartnerCard({ partner }: { partner: typeof PARTNERS[0] }) {
   return (
     <div className="flex-shrink-0 flex items-center gap-3 px-8 py-4 bg-white rounded-2xl shadow-sm border border-base-300 hover:border-secondary/50 transition-all duration-300 hover:shadow-md group cursor-default min-w-[200px] justify-center">
       {!err ? (
-        <div className="relative w-12 h-12 grayscale group-hover:grayscale-0 transition-all duration-300">
+        <div className="relative w-20 h-20 grayscale group-hover:grayscale-0 transition-all duration-300">
           <Image
             src={`/images-logo-partenaires/${partner.logo.split("/").pop()}`}
             alt={partner.name}
@@ -27,9 +27,7 @@ function PartnerCard({ partner }: { partner: typeof PARTNERS[0] }) {
           <Hotel size={20} />
         </div>
       )}
-      <span className="font-heading font-semibold text-sm text-primary group-hover:text-secondary transition-colors whitespace-nowrap">
-        {partner.name}
-      </span>
+
     </div>
   );
 }
