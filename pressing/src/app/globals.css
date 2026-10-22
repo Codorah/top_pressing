@@ -1,0 +1,246 @@
+/* ============================================================
+   globals.css — Design system Top Pressing
+   Tailwind CSS v4 + DaisyUI 5 (CSS-first)
+   ============================================================ */
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: toppressing --default;
+}
+
+/* ---------- Thème custom DaisyUI ---------- */
+@plugin "daisyui/theme" {
+  name: "toppressing";
+  default: true;
+  color-scheme: light;
+
+  --color-primary: #0B3A6F;
+  --color-primary-content: #ffffff;
+  --color-secondary: #22B8CF;
+  --color-secondary-content: #ffffff;
+  --color-accent: #F5A524;
+  --color-accent-content: #ffffff;
+  --color-neutral: #0F172A;
+  --color-neutral-content: #ffffff;
+  --color-base-100: #ffffff;
+  --color-base-200: #F4F7FA;
+  --color-base-300: #E3EAF1;
+  --color-base-content: #0F172A;
+  --color-info: #3B82F6;
+  --color-success: #22C55E;
+  --color-warning: #F5A524;
+  --color-error: #EF4444;
+
+  --radius-box: 1.25rem;
+  --radius-field: 0.75rem;
+  --radius-badge: 0.5rem;
+}
+
+/* ---------- Variables globales ---------- */
+:root {
+  --font-heading: var(--font-sora), "Sora", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+  --color-primary: #0B3A6F;
+  --color-secondary: #22B8CF;
+  --color-accent: #F5A524;
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #ffffff;
+  color: #0F172A;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F4F7FA; }
+::-webkit-scrollbar-thumb { background: #22B8CF; border-radius: 99px; }
+
+/* ---------- Utilitaires personnalisés ---------- */
+.font-heading { font-family: var(--font-heading); }
+
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(11, 58, 111, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, #0B3A6F 0%, #22B8CF 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #0B3A6F 0%, #22B8CF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-hover {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(11, 58, 111, 0.15);
+}
+
+/* ---------- Section séparateurs ---------- */
+.wave-divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.wave-divider svg {
+  display: block;
+  width: 100%;
+}
+
+/* ---------- Marquee keyframes ---------- */
+@keyframes marquee-ltr {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-rtl {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: marquee-ltr var(--marquee-speed, 30s) linear infinite;
+}
+.marquee-track.reverse {
+  animation-name: marquee-rtl;
+}
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* ---------- Typewriter cursor ---------- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: #F5A524;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+/* ---------- Floating animation ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.float-anim { animation: float 3s ease-in-out infinite; }
+.float-anim-delayed { animation: float 3s ease-in-out 1.5s infinite; }
+
+/* ---------- Ken Burns ---------- */
+@keyframes ken-burns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+.ken-burns {
+  animation: ken-burns 8s ease-out forwards;
+}
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #22B8CF, #F5A524);
+  transform-origin: left;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ---------- Pulse WhatsApp ---------- */
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.6; }
+  70%  { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.whatsapp-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ---------- Before/After slider ---------- */
+.before-after-clip {
+  clip-path: inset(0 50% 0 0);
+}
+
+/* ---------- Hide scrollbar for Swiper ---------- */
+.swiper-scrollbar { display: none !important; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .float-anim,
+  .float-anim-delayed,
+  .ken-burns,
+  .typewriter-cursor {
+    animation: none !important;
+  }
+  .marquee-track {
+    transform: none !important;
+  }
+}
+
+/* ---------- Focus visible ---------- */
+:focus-visible {
+  outline: 3px solid #F5A524;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: #22B8CF;
+  color: #fff;
+}
